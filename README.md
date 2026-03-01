@@ -63,3 +63,11 @@ uv run pytest
 - `app/tools.py`: Cardhop schema and tool logic
 - `tests/test_tools.py`: unit tests for parsing, transport, and health behavior
 - `pyproject.toml`: project metadata and dependencies
+
+## Development Quickstart
+
+```bash
+uv sync
+uv run pytest
+```
+
