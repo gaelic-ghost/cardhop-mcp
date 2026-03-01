@@ -1,4 +1,5 @@
 import subprocess
+from typing import cast
 
 from app import tools
 
@@ -96,3 +97,35 @@ def test_cardhop_healthcheck(monkeypatch) -> None:
     assert payload["cardhop_installed"] is True
     assert payload["applescript_available"] is True
     assert payload["url_scheme_available"] is True
+
+
+def test_cardhop_capabilities_shape(monkeypatch) -> None:
+    monkeypatch.setattr(tools, "_is_cardhop_installed", lambda: True)
+    monkeypatch.setattr(tools, "_which", lambda _command: True)
+    monkeypatch.setattr(
+        tools,
+        "_read_cardhop_info_plist",
+        lambda: {
+            "CFBundleShortVersionString": "2.4.5",
+            "CFBundleURLTypes": [{"CFBundleURLSchemes": ["x-cardhop"]}],
+            "NSServices": [{"NSMessage": "sendToCardhop"}],
+        },
+    )
+    monkeypatch.setattr(
+        tools,
+        "_read_cardhop_sdef",
+        lambda: (
+            "<dictionary><suite><command name='parse sentence'>"
+            "<parameter name='add immediately'/>"
+            "</command></suite></dictionary>"
+        ),
+    )
+
+    payload = tools.cardhop_capabilities()
+    assert payload["ok"] is True
+    assert payload["schema_version"] == "1.1.0"
+    assert payload["cardhop_version"] == "2.4.5"
+    cloud_api = cast(dict[str, object], payload["cloud_api"])
+    assert cloud_api["status"] == "no_public_api_found"
+    assert isinstance(payload["surfaces"], list)
+    assert any(item["surface_id"] == "applescript.parse_sentence" for item in payload["surfaces"])

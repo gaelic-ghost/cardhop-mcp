@@ -1,0 +1,176 @@
+{
+  "cloud_api": {
+    "applicable": false,
+    "evidence_ref": [
+      "https://flexibits.com/cardhop/integrations",
+      "https://flexibits.com/account/help/integrations"
+    ],
+    "notes": "No publicly documented Cardhop REST/GraphQL API was identified.",
+    "status": "no_public_api_found"
+  },
+  "generated_at_utc": "2026-03-01T17:20:59.293876+00:00",
+  "mode": "live-safe",
+  "rows": [
+    {
+      "documented": true,
+      "evidence": [
+        "https://flexibits.com/cardhop-mac/help/integration",
+        "local_sdef:parameter=add immediately"
+      ],
+      "implementation_status": "implemented",
+      "notes": "Optional parse modifier to immediately save parsed data.",
+      "support_level": "verified",
+      "surface_id": "applescript.add_immediately",
+      "verified_on_macos": true
+    },
+    {
+      "documented": true,
+      "evidence": [
+        "https://flexibits.com/cardhop-mac/help/integration",
+        "local_sdef:command=parse sentence"
+      ],
+      "implementation_status": "implemented",
+      "notes": "Primary documented AppleScript command.",
+      "support_level": "verified",
+      "surface_id": "applescript.parse_sentence",
+      "verified_on_macos": true
+    },
+    {
+      "documented": true,
+      "evidence": [
+        "https://flexibits.com/cardhop"
+      ],
+      "implementation_status": "missing",
+      "notes": "Public product docs advertise Shortcuts support; callable surface TBD.",
+      "support_level": "inconclusive",
+      "surface_id": "automation.shortcuts_app_intents",
+      "verified_on_macos": false
+    },
+    {
+      "documented": true,
+      "evidence": [
+        "https://flexibits.com/cardhop/integrations",
+        "https://flexibits.com/account/help/integrations"
+      ],
+      "implementation_status": "not_applicable",
+      "notes": "Public integrations exist but are outside direct local transport execution.",
+      "support_level": "documented",
+      "surface_id": "cloud.integrations.account_platform",
+      "verified_on_macos": false
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "local_plist:NSServices.sendToCardhop"
+      ],
+      "implementation_status": "missing",
+      "notes": "Accessible via macOS Services menu; not exposed by current MCP toolset.",
+      "support_level": "experimental",
+      "surface_id": "macos.service.send_to_cardhop",
+      "verified_on_macos": true
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "https://flexibits.com/cardhop-ios/help/integration"
+      ],
+      "implementation_status": "missing",
+      "notes": "iOS URL parameter candidate; not verified on macOS. URL probe launched successfully; behavior remains inconclusive.",
+      "probe": {
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "url": "x-cardhop://parse?s=ZZZ%20MCP%20TEST&add=1"
+      },
+      "support_level": "inconclusive",
+      "surface_id": "url_scheme.add_param",
+      "verified_on_macos": false
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "https://flexibits.com/cardhop-ios/help/integration"
+      ],
+      "implementation_status": "missing",
+      "notes": "iOS URL parameter candidate; not verified on macOS. URL probe launched successfully; behavior remains inconclusive.",
+      "probe": {
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "url": "x-cardhop://parse?s=ZZZ%20MCP%20TEST&list=default"
+      },
+      "support_level": "inconclusive",
+      "surface_id": "url_scheme.list_param",
+      "verified_on_macos": false
+    },
+    {
+      "documented": true,
+      "evidence": [
+        "https://flexibits.com/cardhop-mac/help/integration",
+        "local_plist:CFBundleURLSchemes=x-cardhop"
+      ],
+      "implementation_status": "implemented",
+      "notes": "Documented x-cardhop parse route on macOS.",
+      "support_level": "verified",
+      "surface_id": "url_scheme.parse",
+      "verified_on_macos": true
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "https://flexibits.com/cardhop-ios/help/integration"
+      ],
+      "implementation_status": "missing",
+      "notes": "Documented for iOS; no verified macOS support signal yet. URL probe launched successfully; behavior remains inconclusive.",
+      "probe": {
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "url": "x-cardhop://preferences"
+      },
+      "support_level": "inconclusive",
+      "surface_id": "url_scheme.preferences",
+      "verified_on_macos": false
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "https://flexibits.com/cardhop-ios/help/integration"
+      ],
+      "implementation_status": "missing",
+      "notes": "Documented for iOS; no verified macOS support signal yet. URL probe launched successfully; behavior remains inconclusive.",
+      "probe": {
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "url": "x-cardhop://show"
+      },
+      "support_level": "inconclusive",
+      "surface_id": "url_scheme.show",
+      "verified_on_macos": false
+    },
+    {
+      "documented": false,
+      "evidence": [
+        "https://flexibits.com/cardhop-ios/help/integration"
+      ],
+      "implementation_status": "missing",
+      "notes": "Documented for iOS; not currently verified on macOS. URL probe launched successfully; behavior remains inconclusive.",
+      "probe": {
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "url": "x-cardhop://x-callback-url/show"
+      },
+      "support_level": "inconclusive",
+      "surface_id": "url_scheme.x_callback_url",
+      "verified_on_macos": false
+    }
+  ],
+  "schema_version": "1.1.0"
+}

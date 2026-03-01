@@ -5,6 +5,7 @@ from fastmcp import FastMCP
 from app.tools import (
     CARDHOP_SCHEMA_BUNDLE,
     cardhop_add,
+    cardhop_capabilities,
     cardhop_healthcheck,
     cardhop_parse,
     cardhop_update,
@@ -65,6 +66,12 @@ def update(
 def healthcheck() -> dict[str, object]:
     """Report local Cardhop and transport readiness."""
     return cardhop_healthcheck()
+
+
+@mcp.tool
+def capabilities() -> dict[str, object]:
+    """Return runtime-discovered surface capabilities and support levels."""
+    return cardhop_capabilities()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,68 @@
+{
+  "dry_run_parse": {
+    "command_preview": "tell application \"Cardhop\" to parse sentence \"ZZZ MCP TEST readonly mcp_audit_20260301172059\" with add immediately",
+    "dispatched": false,
+    "dry_run": true,
+    "error_code": null,
+    "error_message": null,
+    "ok": true,
+    "transport_used": "applescript"
+  },
+  "generated_at_utc": "2026-03-01T17:20:59.293876+00:00",
+  "live_safe": {
+    "cleanup": {
+      "ok": true,
+      "residual_count": 0,
+      "residual_ids": []
+    },
+    "created_record_ids": [
+      "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson"
+    ],
+    "deleted_record_ids": [
+      "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson"
+    ],
+    "executed": true,
+    "operations": [
+      {
+        "action": "create",
+        "contact_id": "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson",
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "action": "read",
+        "contact": {
+          "id": "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson",
+          "name": "ZZZ MCP TEST 20260301172059",
+          "note": "mcp_audit_20260301172059"
+        },
+        "ok": true
+      },
+      {
+        "action": "update",
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "action": "delete",
+        "contact_id": "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson",
+        "ok": true,
+        "stderr": ""
+      }
+    ],
+    "read_ok": true,
+    "sentinel": "mcp_audit_20260301172059",
+    "touched_record_ids": [
+      "D228741E-E6C0-462F-B65F-2982351C10AC:ABPerson"
+    ],
+    "update_ok": true
+  },
+  "mode": "live-safe",
+  "pending_cleanup": [],
+  "residual_cleanup": {
+    "attempted": true,
+    "deleted_ids": [],
+    "errors": []
+  },
+  "sentinel": "mcp_audit_20260301172059"
+}

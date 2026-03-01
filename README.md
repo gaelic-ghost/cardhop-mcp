@@ -43,6 +43,7 @@ args = ["-lc", "cd /absolute/path/to/cardhop-mcp && PYTHONPATH=. uv run python a
 - `add`: convenience wrapper for parse with `add_immediately=true`
 - `update`: freeform update guidance over parse semantics
 - `healthcheck`: local readiness status for Cardhop + transport commands
+- `capabilities`: runtime surface inventory with support levels and evidence refs
 
 ## Update guidance
 
@@ -58,6 +59,25 @@ uv run pytest
 uv run ruff check .
 uv run mypy .
 ```
+
+## Surface verification audit
+
+The repository includes a data-safe verifier for surface audits:
+
+```bash
+uv run python -m scripts.verify_cardhop_surfaces --mode readonly
+uv run python -m scripts.verify_cardhop_surfaces --mode live-safe
+```
+
+- `readonly`: emits audit artifacts without mutating contacts.
+- `live-safe`: uses sentinel-marked test contacts only (`ZZZ MCP TEST`, `mcp_audit_*`) and performs teardown.
+
+Outputs:
+
+- `artifacts/cardhop_surface_matrix.json`
+- `artifacts/cardhop_test_data_manifest.json`
+- `docs/evidence/cardhop-surface-map.md`
+- `docs/cardhop-implementation-backlog.md`
 
 ## Project layout
 
