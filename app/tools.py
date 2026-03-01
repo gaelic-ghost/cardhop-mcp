@@ -94,7 +94,9 @@ def _validate_sentence(raw_sentence: str) -> str:
     return sentence
 
 
-def _resolve_transport(requested: Transport) -> tuple[ResolvedTransport | None, DispatchResult | None]:
+def _resolve_transport(
+    requested: Transport,
+) -> tuple[ResolvedTransport | None, DispatchResult | None]:
     if not _is_cardhop_installed():
         return None, DispatchResult(
             ok=False,
@@ -244,7 +246,11 @@ def cardhop_parse(
 
     assert resolved_transport is not None
     if resolved_transport == "applescript":
-        return _dispatch_applescript(clean_sentence, add_immediately=add_immediately, dry_run=dry_run).model_dump()
+        return _dispatch_applescript(
+            clean_sentence,
+            add_immediately=add_immediately,
+            dry_run=dry_run,
+        ).model_dump()
     return _dispatch_url_scheme(clean_sentence, dry_run=dry_run).model_dump()
 
 
@@ -257,7 +263,12 @@ def cardhop_add(
 
     This always maps to parse with add_immediately=true.
     """
-    return cardhop_parse(sentence=sentence, transport=transport, add_immediately=True, dry_run=dry_run)
+    return cardhop_parse(
+        sentence=sentence,
+        transport=transport,
+        add_immediately=True,
+        dry_run=dry_run,
+    )
 
 
 def cardhop_update(
@@ -291,7 +302,9 @@ def cardhop_healthcheck() -> dict[str, object]:
     if not cardhop_installed:
         notes.append("Install Cardhop.app in /Applications or ~/Applications.")
     if applescript_available:
-        notes.append("AppleScript transport available; first run may prompt for Automation permission.")
+        notes.append(
+            "AppleScript transport available; first run may prompt for Automation permission."
+        )
     if url_scheme_available:
         notes.append("URL scheme transport available via open x-cardhop://parse.")
     if not applescript_available and not url_scheme_available:

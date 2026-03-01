@@ -51,10 +51,12 @@ For best update behavior, use freeform instructions in this form:
 - `"<existing name> <changed fields>"`
 - Example: `Jane Doe new email jane@acme.com mobile 555-123-4567`
 
-## Run tests
+## Run validation checks
 
 ```bash
 uv run pytest
+uv run ruff check .
+uv run mypy .
 ```
 
 ## Project layout
@@ -69,5 +71,6 @@ uv run pytest
 ```bash
 uv sync
 uv run pytest
+uv run ruff check .
+uv run mypy .
 ```
-

@@ -1,5 +1,6 @@
-from fastmcp import FastMCP
 from typing import Literal
+
+from fastmcp import FastMCP
 
 from app.tools import (
     CARDHOP_SCHEMA_BUNDLE,

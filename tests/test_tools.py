@@ -22,7 +22,9 @@ def test_cardhop_parse_applescript_dry_run(monkeypatch) -> None:
     assert payload["ok"] is True
     assert payload["dispatched"] is False
     assert payload["transport_used"] == "applescript"
-    assert 'with add immediately' in payload["command_preview"]
+    command_preview = payload["command_preview"]
+    assert isinstance(command_preview, str)
+    assert "with add immediately" in command_preview
 
 
 def test_cardhop_parse_url_scheme_dispatch(monkeypatch) -> None:
@@ -42,7 +44,9 @@ def test_cardhop_parse_url_scheme_dispatch(monkeypatch) -> None:
     assert payload["ok"] is True
     assert payload["dispatched"] is True
     assert payload["transport_used"] == "url_scheme"
-    assert payload["command_preview"].startswith("x-cardhop://parse?s=")
+    command_preview = payload["command_preview"]
+    assert isinstance(command_preview, str)
+    assert command_preview.startswith("x-cardhop://parse?s=")
 
 
 def test_cardhop_update_forwards_to_parse(monkeypatch) -> None:
